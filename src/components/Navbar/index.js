@@ -3,6 +3,7 @@ import style from "./style.css";
 import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const Navbar = ({ totalItems, location }) => (
   <div className={style.navbarContainer}>
@@ -25,4 +26,8 @@ Navbar.propTypes = {
   totalItems: PropTypes.number.isRequired
 }
 
-export default withRouter(Navbar);
+const mapStateToProps = state => ({
+  totalItems: state.totalItems
+});
+
+export default withRouter(connect(mapStateToProps)(Navbar));
