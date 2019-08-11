@@ -3,11 +3,20 @@ import styles from './App.css';
 import Navbar from './components/Navbar';
 import ItemsList from './components/ItemsList';
 import Cart from './components/Cart';
+import Axios from 'axios';
 
 class App extends Component {
   state = {
-    activeTab: 0
+    activeTab: 0,
+    items: []
   };
+
+  componentDidMount () {
+    Axios.get('http://my-json-server.typicode.com/4d4rsh/mock-shopping-site-data/items')
+      .then(response => this.setState({
+        items: response.data
+      }));
+  }
 
   handleTabChange = index => {
     this.setState({
