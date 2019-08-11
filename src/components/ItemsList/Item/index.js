@@ -17,7 +17,7 @@ const Item = ({ item, children }) => (
         </div>
         <div className={style.itemRight}>
             <div className={style.itemPrice}>
-                {item.price}
+                ${item.price}
             </div>
             {children}
         </div>

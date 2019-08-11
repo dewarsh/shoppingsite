@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './App.css';
+import style from './App.css';
 import Navbar from './components/Navbar';
 import ItemsList from './components/ItemsList';
 import Cart from './components/Cart';
@@ -92,9 +92,9 @@ class App extends Component {
     const { activeTab, totalItems } = this.state;
     return (
       <div className="App">
-        <div className={styles.app}>
+        <div className={style.app}>
           <Navbar activeTab={activeTab} onTabChange={this.handleTabChange} totalItems={totalItems}/>
-          <main className={styles.appContent}>
+          <main className={style.appContent}>
             {this.renderContent()}
           </main>
         </div>

@@ -21,6 +21,9 @@
 .remove-one {
     border-right: none;
 }
+.total-amount {
+    float: right;
+}
 .loading-text {
     margin-top: 30px;
     text-align: center;
