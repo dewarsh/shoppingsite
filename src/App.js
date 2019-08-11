@@ -8,7 +8,8 @@ import Axios from 'axios';
 class App extends Component {
   state = {
     activeTab: 0,
-    items: []
+    items: [],
+    cart: []
   };
 
   componentDidMount () {
@@ -25,7 +26,21 @@ class App extends Component {
   }
 
   handleAddToCart = item => {
-    console.log("You clicked on this item",item)
+    let tempCart = [...this.state.cart];
+    let valueFound = false;
+    for (let i = 0; i < tempCart.length; i++) {
+      if (tempCart[i].id === item.id) {
+        tempCart[i] = { ...tempCart[i], count: tempCart[i].count + 1 }
+        valueFound = true;
+        break;
+      }
+    }
+    if (!valueFound) {
+      tempCart = [...tempCart, { ...item, count: 1 }]
+    }
+    this.setState({
+      cart: tempCart
+    })
   }
 
 
