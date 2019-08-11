@@ -45,12 +45,12 @@ class App extends Component {
 
 
   renderContent = () => {
-    const { activeTab, items } = this.state;
+    const { activeTab, items, cart } = this.state;
     switch (activeTab) {
       default:
       case 0: return <ItemsList items={items}
       onAddToCart={this.handleAddToCart}/>;
-      case 1: return <Cart />
+      case 1: return <Cart items={cart}/>
     }
   }
 
