@@ -13,3 +13,6 @@
     margin-right: 32px;
     padding-bottom: 5px;
 }
+.navbar-item-active {
+    border-bottom: 4px solid #ffeb3b;
+}
