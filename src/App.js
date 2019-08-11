@@ -4,26 +4,20 @@ import Navbar from './components/Navbar';
 import ItemsList from './components/ItemsList';
 import Cart from './components/Cart';
 import Axios from 'axios';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
   state = {
-    activeTab: 0,
     items: [],
     cart: [],
     totalItems: 0
   };
 
   componentDidMount() {
-    setTimeout(()=>Axios.get('http://my-json-server.typicode.com/4d4rsh/mock-shopping-site-data/items')
-    .then(response => this.setState({
-      items: response.data
-    })),2000);
-  }
-
-  handleTabChange = index => {
-    this.setState({
-      activeTab: index
-    });
+    setTimeout(() => Axios.get('http://my-json-server.typicode.com/4d4rsh/mock-shopping-site-data/items')
+      .then(response => this.setState({
+        items: response.data
+      })), 2000);
   }
 
   handleAddToCart = item => {
@@ -41,7 +35,7 @@ class App extends Component {
     }
     this.setState({
       cart: tempCart,
-      totalItems: this.state.totalItems+1
+      totalItems: this.state.totalItems + 1
     })
   }
 
@@ -58,7 +52,7 @@ class App extends Component {
 
     this.setState({
       cart: tempCart,
-      totalItems: this.state.totalItems-1
+      totalItems: this.state.totalItems - 1
     })
   }
 
@@ -71,34 +65,32 @@ class App extends Component {
 
     this.setState({
       cart: tempCart,
-      totalItems: this.state.totalItems+1
+      totalItems: this.state.totalItems + 1
     })
   }
 
-
-  renderContent = () => {
-    const { activeTab, items, cart } = this.state;
-    switch (activeTab) {
-      default:
-      case 0: return <ItemsList items={items}
-        onAddToCart={this.handleAddToCart} />;
-      case 1: return <Cart items={cart} 
-        onAddOne={this.handleAddOne}
-        onRemoveOne={this.handleRemoveOne} />
-    }
-  }
-
   render() {
-    const { activeTab, totalItems } = this.state;
+    const { totalItems, items, cart } = this.state;
     return (
-      <div className="App">
-        <div className={style.app}>
-          <Navbar activeTab={activeTab} onTabChange={this.handleTabChange} totalItems={totalItems}/>
-          <main className={style.appContent}>
-            {this.renderContent()}
-          </main>
-        </div>
-      </div>
+      <BrowserRouter>
+          <div className={style.app}>
+            <Navbar totalItems={totalItems} />
+            <main className={style.appContent}>
+              <Switch>
+              <Redirect exact from= "/" to= "/items" />
+              <Route path='/items' 
+                render={(routeProps) => <ItemsList {...routeProps} 
+                                          items={items} 
+                                          onAddToCart={this.handleAddToCart} />} />
+              <Route path='/cart' 
+                render={(routeProps) => <Cart {...routeProps} 
+                                          items={cart} 
+                                          onAddOne={this.handleAddOne} 
+                                          onRemoveOne={this.handleRemoveOne} />} />
+              </Switch>
+            </main>
+          </div>
+      </BrowserRouter>
     );
   }
 }

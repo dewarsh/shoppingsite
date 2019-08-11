@@ -14,7 +14,11 @@
     margin-right: 32px;
     padding-bottom: 5px;
 }
-.navbar-item-active {
+.navbar-list-item a {
+    text-decoration: none;
+    color: #000000;
+}
+.navbar-list-item .active {
     border-bottom: 4px solid #ffeb3b;
 }
 .total-items-container {
