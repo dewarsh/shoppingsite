@@ -44,11 +44,31 @@ class App extends Component {
   }
 
   handleRemoveOne = itemId => {
-    console.log("Remove one clicked for",itemId);
+    const { cart } = this.state;
+    let tempCart = [...cart];
+    let index = tempCart.findIndex(item => item.id === itemId);
+    if (cart[index].count !== 1) {
+      let newItem = { ...cart[index], count: cart[index].count - 1 };
+      tempCart.splice(index, 1, newItem);
+    } else {
+      tempCart.splice(index, 1);
+    }
+
+    this.setState({
+      cart: tempCart
+    })
   }
 
   handleAddOne = itemId => {
-    console.log("Add one clicked for",itemId);
+    const { cart } = this.state;
+    let tempCart = [...cart];
+    let index = tempCart.findIndex(item => item.id === itemId);
+    let newItem = { ...cart[index], count: cart[index].count + 1 };
+    tempCart.splice(index, 1, newItem);
+
+    this.setState({
+      cart: tempCart
+    })
   }
 
 
