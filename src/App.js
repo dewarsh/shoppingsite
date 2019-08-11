@@ -5,6 +5,8 @@ import ItemsList from './components/ItemsList';
 import Cart from './components/Cart';
 import Axios from 'axios';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 
 class App extends Component {
   state = {
@@ -72,25 +74,27 @@ class App extends Component {
   render() {
     const { totalItems, items, cart } = this.state;
     return (
-      <BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
           <div className={style.app}>
             <Navbar totalItems={totalItems} />
             <main className={style.appContent}>
               <Switch>
-              <Redirect exact from= "/" to= "/items" />
-              <Route path='/items' 
-                render={(routeProps) => <ItemsList {...routeProps} 
-                                          items={items} 
-                                          onAddToCart={this.handleAddToCart} />} />
-              <Route path='/cart' 
-                render={(routeProps) => <Cart {...routeProps} 
-                                          items={cart} 
-                                          onAddOne={this.handleAddOne} 
-                                          onRemoveOne={this.handleRemoveOne} />} />
+                <Redirect exact from="/" to="/items" />
+                <Route path='/items'
+                  render={(routeProps) => <ItemsList {...routeProps}
+                    items={items}
+                    onAddToCart={this.handleAddToCart} />} />
+                <Route path='/cart'
+                  render={(routeProps) => <Cart {...routeProps}
+                    items={cart}
+                    onAddOne={this.handleAddOne}
+                    onRemoveOne={this.handleRemoveOne} />} />
               </Switch>
             </main>
           </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
