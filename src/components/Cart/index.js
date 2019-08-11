@@ -4,7 +4,7 @@ import style from './style.css';
 import Item from '../ItemsList/Item';
 
 const Cart = ({ items, onRemoveOne, onAddOne }) => {
-    return (
+    return (<>
     <ul className={style.items}>
         {items.map(item =>
             <li key={item.id} className={style.item}>
@@ -18,7 +18,8 @@ const Cart = ({ items, onRemoveOne, onAddOne }) => {
             </li> 
             )}
     </ul>
-    );
+    {items.length === 0 && <h2 className={style.loadingText}>Your Cart is empty !</h2>}
+    </>);
 }
 
 Cart.propTypes = {

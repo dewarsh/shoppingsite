@@ -13,10 +13,10 @@ class App extends Component {
   };
 
   componentDidMount() {
-    Axios.get('http://my-json-server.typicode.com/4d4rsh/mock-shopping-site-data/items')
+    setTimeout(()=>Axios.get('http://my-json-server.typicode.com/4d4rsh/mock-shopping-site-data/items')
       .then(response => this.setState({
         items: response.data
-      }));
+      })),2000);
   }
 
   handleTabChange = index => {
