@@ -5,3 +5,19 @@
 .items li {
     list-style: none;
 }
+.count {
+    padding: 5px 10px;
+    border: 1px solid #cccc;
+}
+.add-one,
+.remove-one {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+.add-one {
+    border-left: none;
+}
+.remove-one {
+    border-right: none;
+}

@@ -12,7 +12,7 @@ class App extends Component {
     cart: []
   };
 
-  componentDidMount () {
+  componentDidMount() {
     Axios.get('http://my-json-server.typicode.com/4d4rsh/mock-shopping-site-data/items')
       .then(response => this.setState({
         items: response.data
@@ -43,14 +43,24 @@ class App extends Component {
     })
   }
 
+  handleRemoveOne = itemId => {
+    console.log("Remove one clicked for",itemId);
+  }
+
+  handleAddOne = itemId => {
+    console.log("Add one clicked for",itemId);
+  }
+
 
   renderContent = () => {
     const { activeTab, items, cart } = this.state;
     switch (activeTab) {
       default:
       case 0: return <ItemsList items={items}
-      onAddToCart={this.handleAddToCart}/>;
-      case 1: return <Cart items={cart}/>
+        onAddToCart={this.handleAddToCart} />;
+      case 1: return <Cart items={cart} 
+        onAddOne={this.handleAddOne}
+        onRemoveOne={this.handleRemoveOne} />
     }
   }
 
