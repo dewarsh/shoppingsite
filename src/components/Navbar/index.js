@@ -1,12 +1,9 @@
 import React from "react";
 import styles from "./style.css";
 import NavLink from "./NavLink";
+import PropTypes from 'prop-types';
 
-const Navbar = props => {
-    const {
-        activeTab,
-        onTabChange
-    } = props;
+const Navbar = ({activeTab,onTabChange}) => {
 
     return (
       <div className={styles.navbarContainer}>
@@ -20,6 +17,11 @@ const Navbar = props => {
         </ul>
       </div>
     );
+}
+
+Navbar.propTypes = {
+  activeTab: PropTypes.number.isRequired,
+  onTabChange: PropTypes.func.isRequired
 }
 
 export default Navbar;

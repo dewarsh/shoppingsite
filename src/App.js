@@ -25,10 +25,10 @@ class App extends Component {
   }
 
   renderContent = () => {
-    const { activeTab } = this.state;
+    const { activeTab, items } = this.state;
     switch (activeTab) {
       default:
-      case 0: return <ItemsList />;
+      case 0: return <ItemsList items={items}/>;
       case 1: return <Cart />
     }
   }
