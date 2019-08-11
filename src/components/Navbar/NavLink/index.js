@@ -16,7 +16,7 @@ class NavLink extends Component {
 }
 NavLink.propTypes = {
     onClick: PropTypes.func.isRequired,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired
 }
 

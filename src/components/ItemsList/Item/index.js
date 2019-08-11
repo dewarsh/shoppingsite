@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './style.css';
 
-const Item = ({ item }) => (
+const Item = ({ item, children }) => (
     <div className={style.item}>
         <div className={style.itemLeft}>
             <div className={style.itemImage}>
@@ -19,12 +19,14 @@ const Item = ({ item }) => (
             <div className={style.itemPrice}>
                 {item.price}
             </div>
+            {children}
         </div>
     </div>
 );
 
 Item.propTypes = {
-    item: PropTypes.object.isRequired
+    item: PropTypes.object.isRequired,
+    children: PropTypes.node
 };
 
 export default Item;

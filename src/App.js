@@ -24,11 +24,17 @@ class App extends Component {
     });
   }
 
+  handleAddToCart = item => {
+    console.log("You clicked on this item",item)
+  }
+
+
   renderContent = () => {
     const { activeTab, items } = this.state;
     switch (activeTab) {
       default:
-      case 0: return <ItemsList items={items}/>;
+      case 0: return <ItemsList items={items}
+      onAddToCart={this.handleAddToCart}/>;
       case 1: return <Cart />
     }
   }
